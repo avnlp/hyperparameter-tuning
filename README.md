@@ -1,14 +1,20 @@
 # Effect of Optimizer Selection and Hyperparameter Tuning on Training Efficiency and LLM Performance
 
-A Comparative analysis of hyperparameter tuning for three NLP tasks of Sentiment Analysis, Question Answering and Text Summarization. First, DistilBERT, BERT and FinBERT models were fine-tuned for Sentiment Analysis. Next, DistilBERT, BERT and RoBERTa models were fine-tuned for Question Answering. Finally, DistilBART, T5 and BART models were fine-tuned for Text Summarization.
+- A Comparative analysis of hyperparameter tuning for three NLP tasks of Sentiment Analysis, Question Answering and Text Summarization. First, DistilBERT, BERT and FinBERT models were fine-tuned for Sentiment Analysis. Next, DistilBERT, BERT and RoBERTa models were fine-tuned for Question Answering. Finally, DistilBART, T5 and BART models were fine-tuned for Text Summarization.
 
-We fine-tuned DistilBERT, BERT, and FinBERT models for Sentiment Analysis on the StockTwits and Financial PhraseBank dataset, while DistilBERT, BERT, RoBERTa were fine-tuned for Question Answering on the CoQA and SQuAD dataset. For Text Summarization, BART, DistillBART, and T5 models were fine-tuned on the BillSum and Multi-News dataset.
+- We fine-tuned DistilBERT, BERT, and FinBERT models for Sentiment Analysis on the StockTwits and Financial PhraseBank dataset, while DistilBERT, BERT, RoBERTa were fine-tuned for Question Answering on the CoQA and SQuAD dataset. For Text Summarization, BART, DistillBART, and T5 models were fine-tuned on the BillSum and Multi-News dataset.
 
-The difference between optimizers is entirely captured by the choice of update rule and hyperparameters. As a hyperparameter tuning protocol approaches optimality, a more expressive optimizer can never underperform any of its specializations.
+- The difference between optimizers is entirely captured by the choice of update rule and hyperparameters. As a hyperparameter tuning protocol approaches optimality, a more expressive optimizer can never underperform any of its specializations.
 
-In our experiments, we chose the search space for each optimizer by running an initial set of experiments over a relatively large search space. In a typical case, we ran a single set of initial trials per optimizer to select the final search space.
+- In our experiments, we chose the search space for each optimizer by running an initial set of experiments over a relatively large search space. In a typical case, we ran a single set of initial trials per optimizer to select the final search space.
 
-Inclusion relationships between optimizers are very important in practice. More general optimizers never underperform their special cases. In particular, RMSProp and AdamW never underperformed SGD, Nesterov, or Momentum optimizers.
+- Inclusion relationships between optimizers are very important in practice. More general optimizers never underperform their special cases. In particular, RMSProp and AdamW never underperformed SGD, Nesterov, or Momentum optimizers.
+
+- The difference between optimizers is entirely captured by the choice of update rule and hyperparameters. As a hyperparameter tuning protocol approaches optimality, a more expressive optimizer can never underperform any of its specializations. This can be shown by the inclusion relations between the optimizers as follows:
+
+  - SGD ⊆ MOMENTUM ⊆ RMSPROP
+  - SGD ⊆ MOMENTUM ⊆ ADAM
+  - SGD ⊆ NESTEROV ⊆ NADAM
 
 ## Parameters used in Hyperparameter Tuning
 
@@ -19,12 +25,6 @@ Inclusion relationships between optimizers are very important in practice. More 
 - The **Smoothing Constant (α)** maintains a decaying average of squared gradients. Using a decaying moving average of the partial derivative allows the search to forget early partial derivative values and focus on the most recently seen shape of the search space.
 
  - **The Exponential Decay Rate Moment Estimates (β1 and β2)** are used for smoothing the path to convergence, and for also providing some momentum to cross a local minima or saddle point. 
-
-- The difference between optimizers is entirely captured by the choice of update rule and hyperparameters. As a hyperparameter tuning protocol approaches optimality, a more expressive optimizer can never underperform any of its specializations. This can be shown by the inclusion relations between the optimizers as follows:
-
-  - SGD ⊆ MOMENTUM ⊆ RMSPROP
-  - SGD ⊆ MOMENTUM ⊆ ADAM
-  - SGD ⊆ NESTEROV ⊆ NADAM
 
 
 ## Data:
@@ -73,20 +73,26 @@ The FIQA dataset contains:
 CoQA is a large-scale dataset for building Conversational Question Answering systems. The goal of the CoQA challenge is to measure the ability of machines to understand a text passage and answer a series of interconnected questions that appear in a conversation.
 
 CoQA contains 127,000+ questions with answers collected from 8000+ conversations. Each conversation is collected by pairing two crowdworkers to chat about a passage in the form of questions and answers.
+The dataset consists of:
 
+- Text: The Title for each question and answer pair 
+
+- Question: The question regarding the context.
+
+- Answer: The answer to each question.
 ### SQuAD 
 
 The Stanford Question Answering Dataset (**SQuAD**) is a reading comprehension dataset consisting of questions posed by crowdworkers on a set of Wikipedia articles. The answer to every question is a segment of text, or span, from the corresponding reading passage. There are 100,000+ question-answer pairs on 500+ articles.
 
 The dataset contains the columns:
 
-- **Title**: The Title for each question and answer pair.
+- Title: The Title for each question and answer pair.
 
-- **Context**: The context of the news article.
+- Context: The context of the news article.
 
-- **Question**: The question regarding the context.
+- Question: The question regarding the context.
 
-- **Answers**: The answer to each question.
+- Answers: The answer to each question.
 
 ### BillSum 
 
@@ -110,8 +116,6 @@ There are two features:
 ## Experiments:
 
 ### Financial Phrase-Bank
-#### **FINBERT**
-
 - The FINBERT model was fine tuned on the data. Training the model with an **Adam optimizer** with learning rate of 5e-5, for **3 epochs** yielded an **Accuracy of 90.91% and an F1 Score of 0.91.**
 
 | Model      | Epochs | Accuracy | F1 Score(Weighted) |
@@ -162,8 +166,6 @@ The comparison of the optimizer hyperparamerters that were taken are shown below
 
 
 ## FINGPT-Sentiment:
-#### **LLama 3**
-
 - The LLama 3 model was fine tuned on the data. Training the model with an **Adam optimizer** with learning rate of 3e-5, for **6 epochs** yielded an **Accuracy of 84% and an F1 Score of 0.68.**
 
 **Hyperparameter Tuning**
@@ -193,8 +195,6 @@ The comparison of the optimizer hyperparamerters that were taken are shown below
 
 
 ## FIQA
-#### **LLama 3**
-
 - Training the model with an AdamW optimizer with learning rate of 3e-5 for 6 epochs on the Llama-3 model, yielded an **F1 Score of 0.86**.
 
 **Hyperparameter Tuning**
@@ -222,9 +222,7 @@ The comparison of the optimizer hyperparamerters that were taken are shown below
 
 
 ## COQA
-#### **DistilBERT**
-
-- Training the model with an AdamW optimizer with learning rate of 5e-5 for 4 epochs, yielded an **F1 Score of 0.68**.
+- Training the model with an AdamW optimizer with learning rate of 5e-5 for 4 epochs on the DistilBERT model, yielded an **F1 Score of 0.68**.
 
 **Hyperparameter Tuning**
 
