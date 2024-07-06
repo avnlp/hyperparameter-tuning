@@ -24,11 +24,12 @@
 
 - The **Smoothing Constant (α)** maintains a decaying average of squared gradients. Using a decaying moving average of the partial derivative allows the search to forget early partial derivative values and focus on the most recently seen shape of the search space.
 
- - **The Exponential Decay Rate Moment Estimates (β1 and β2)** are used for smoothing the path to convergence, and for also providing some momentum to cross a local minima or saddle point. 
+- **The Exponential Decay Rate Moment Estimates (β1 and β2)** are used for smoothing the path to convergence, and for also providing some momentum to cross a local minima or saddle point.
 
+## Data
 
-## Data:
 ### Financial Phrase Bank  
+
 The Financial PhraseBank dataset consists of 4840 sentences from English language financial news categorised by sentiment.
 These sentences then were annotated by 16 people with background in finance and business.
 
@@ -37,7 +38,7 @@ The dataset contains two columns <br>
 - **Sentiment**: The sentiment can be negative, neutral or positive.
 - **News Headline**: Headlines of the news articles. Predicting the sentiment based on the news headlines.
 
-### StockTwits 
+### StockTwits
 
 The Stocktwits dataset consists of 64,51,067 StockTwits from the [StockTwits](https://stocktwits.com/) platform and each post has been categorised by a polarity.
 
@@ -48,8 +49,9 @@ The dataset contains two columns: <br>
 - **Polarity**: Contains two values ie. Negative and Positive. Negative indicates that the Stock price may from fall whereas Positive indicates an increase in price of the Stock.
   <br>
 
-### FINGPT-Sentiment 
-The FinGPT-Sentiment dataset is created by combining the Financial Phrase Bank, FIQA-sentiment, twitter-financial-news-sentiment and news-with-gpt-instructions datasets. The dataset contains the following instructions along with the sentiment scores: "What is the sentiment of this news? Please choose an answer from (strong negative/moderately/neutral)". The FinGPT-sentiment-train dataset contains 76.8K rows of training data. 
+### FINGPT-Sentiment
+
+The FinGPT-Sentiment dataset is created by combining the Financial Phrase Bank, FIQA-sentiment, twitter-financial-news-sentiment and news-with-gpt-instructions datasets. The dataset contains the following instructions along with the sentiment scores: "What is the sentiment of this news? Please choose an answer from (strong negative/moderately/neutral)". The FinGPT-sentiment-train dataset contains 76.8K rows of training data.
 
 The dataset consists of:
 
@@ -59,14 +61,14 @@ The dataset consists of:
 
 - **Output:** Contains sentiment labels which can be positive, negative, neutral, and fine-grained categories such as mildly positive, mildly negative, moderately positive, and moderately negative.
 
-### FIQA 
+### FIQA
 
 The FIQA (Financial Opinion Mining and Question Answering) dataset has a corpus, queries and qrels (relevance judgments file). The FiQA dataset has roughly 6,000 questions and 57,000 answers. They are in the following format:
 The FIQA dataset contains:
 
 - Corpus file: a .jsonl file (jsonlines) that contains a list of dictionaries, each with three fields \_id with unique document identifier, title with document title (optional) and text with document paragraph or passage.
-- Queries file: a .jsonl file (jsonlines) that contains a list of dictionaries, each with two fields \_id with unique query identifier and text with query text. 
-- Qrels file: a .tsv file (tab-seperated) that contains three columns, i.e. the query-id, corpus-id and score in this order. 
+- Queries file: a .jsonl file (jsonlines) that contains a list of dictionaries, each with two fields \_id with unique query identifier and text with query text.
+- Qrels file: a .tsv file (tab-seperated) that contains three columns, i.e. the query-id, corpus-id and score in this order.
 
 ### Conversation QA Dataset (CoQA)
 
@@ -75,12 +77,13 @@ CoQA is a large-scale dataset for building Conversational Question Answering sys
 CoQA contains 127,000+ questions with answers collected from 8000+ conversations. Each conversation is collected by pairing two crowdworkers to chat about a passage in the form of questions and answers.
 The dataset consists of:
 
-- Text: The Title for each question and answer pair 
+- Text: The Title for each question and answer pair
 
 - Question: The question regarding the context.
 
 - Answer: The answer to each question.
-### SQuAD 
+
+### SQuAD
 
 The Stanford Question Answering Dataset (**SQuAD**) is a reading comprehension dataset consisting of questions posed by crowdworkers on a set of Wikipedia articles. The answer to every question is a segment of text, or span, from the corresponding reading passage. There are 100,000+ question-answer pairs on 500+ articles.
 
@@ -94,16 +97,18 @@ The dataset contains the columns:
 
 - Answers: The answer to each question.
 
-### BillSum 
+### BillSum
 
 BillSum is the first dataset for summarization of US Congressional and California state bills.
 
 The BillSum dataset consists of three parts: US training bills, US test bills and California test bills. The US bills were collected from the Govinfo service provided by the United States Government Publishing Office (GPO). The corpus consists of bills from the 103rd-115th (1993-2018) sessions of Congress. The data was split into 18,949 train bills and 3,269 test bills. For California, bills from the 2015-2016 session were scraped directly from the legislature’s website; the summaries were written by their Legislative Counsel.
 The dataset consists of:
+
 - Text: Text present in the congressional or state bills.
 
 - Summary: Summary of the Bills.
-### Multi News 
+
+### Multi News
 
 Multi-News, consists of news articles and human-written summaries of these articles from the site newser.com. Each summary is professionally written by editors and includes links to the original articles cited.
 
@@ -112,10 +117,10 @@ There are two features:
 - document: Text of News Articles
 - summary: News Summary.
 
-
-## Experiments:
+## Experiments
 
 ### Financial Phrase-Bank
+
 - The FINBERT model was fine tuned on the data. Training the model with an **Adam optimizer** with learning rate of 5e-5, for **3 epochs** yielded an **Accuracy of 90.91% and an F1 Score of 0.91.**
 
 | Model      | Epochs | Accuracy | F1 Score(Weighted) |
@@ -138,8 +143,7 @@ Hyperparameters used:
 <br>
 <img src = "plots/financial_phrase_bank_classification_combined.png">
 
-
-## StockTwits:
+## StockTwits
 
 - For the **StockTwits** dataset, the best results were obtained using a fine-tuned **FinBERT** model. The model was trained using the **Adam** optimizer with learning rate of 5e-5, for **6 epochs** yielding an **Accuracy of 82%** and an **F1-Score of 0.68**.
 
@@ -149,7 +153,7 @@ Hyperparameters used:
 | DistilBERT | 0.74     | 0.52               |
 | FinBERT    | 0.82     | 0.68               |
 
-## Optimizers Comparison:
+## Optimizers Comparison
 
 The comparison of the optimizer hyperparamerters that were taken are shown below:
 
@@ -164,8 +168,8 @@ The comparison of the optimizer hyperparamerters that were taken are shown below
 **Comparing the Training and Validation loss of all optimizers** for the fine tuned FinBERT model
   <img src = "plots/stocktwits_classification_combined.png">
 
+## FINGPT-Sentiment
 
-## FINGPT-Sentiment:
 - The LLama 3 model was fine tuned on the data. Training the model with an **Adam optimizer** with learning rate of 3e-5, for **6 epochs** yielded an **Accuracy of 84% and an F1 Score of 0.68.**
 
 **Hyperparameter Tuning**
@@ -175,8 +179,7 @@ The comparison of the optimizer hyperparamerters that were taken are shown below
 | LLama 3     | 0.84     | 0.68               |
 | Phi 3       | 0.74     | 0.59               |
 
-
-## Optimizers Comparison:
+## Optimizers Comparison
 
 The comparison of the optimizer hyperparamerters that were taken are shown below:
 
@@ -188,13 +191,12 @@ The comparison of the optimizer hyperparamerters that were taken are shown below
 | RMSProp          | 2e-5              | 1e-1         | 0.99      | -          | -          | 1e-5        |
 | AdamW            | 3e-5              | 1e-1         | -         | 0.99       | 0.99       | 1e-5        |
 
-
 **Comparing the Training and Validation loss of all optimizers** for the fine tuned LLama-3 model
 
 <img src = "plots/plot_sentiment_combined.png" height =350>
 
-
 ## FIQA
+
 - Training the model with an AdamW optimizer with learning rate of 3e-5 for 6 epochs on the Llama-3 model, yielded an **F1 Score of 0.86**.
 
 **Hyperparameter Tuning**
@@ -204,7 +206,7 @@ The comparison of the optimizer hyperparamerters that were taken are shown below
 | LLama 3    | 0.86               |
 | Phi 3      | 0.75               |
 
-## Optimizers Comparison:
+## Optimizers Comparison
 
 The comparison of the optimizer hyperparamerters that were taken are shown below:
 
@@ -220,8 +222,8 @@ The comparison of the optimizer hyperparamerters that were taken are shown below
 
 <img src = "plots/loss_fiqa_combined.jpg" height =315>
 
-
 ## COQA
+
 - Training the model with an AdamW optimizer with learning rate of 5e-5 for 4 epochs on the DistilBERT model, yielded an **F1 Score of 0.68**.
 
 **Hyperparameter Tuning**
@@ -232,7 +234,8 @@ The comparison of the optimizer hyperparamerters that were taken are shown below
 | BERT       | 0.72               |
 | RoBERTa    | 0.84               |
 
-## Optimizers Comparison:
+## Optimizers Comparison
+
 The comparison of the optimizer hyperparamerters that were taken are shown below:
 
 | Optimizer        | $\gamma$ (Learning Rate) | $\eta$ Momentum | $\alpha$ Alpha |$\beta_1$ Beta1 | $\beta_2$ Beta2 | $\epsilon$ Epsilon |
@@ -243,11 +246,9 @@ The comparison of the optimizer hyperparamerters that were taken are shown below
 | RMSProp          | 2e-5              | 1e-1         | 1-1e-2    | -          | -          | 1e-5        |
 | AdamW            | 3e-5              | 1e-1         | 1-1e-2    | 1-1e-2     | 1-1e-2     | 1e-5        |
 
- 
 **Comparing the Training and Validation loss of all optimizers** for the fine tuned RoBERTa model
 
 <img src = "plots/coqa_loss_combined.png" height =350>
-
 
 ## SQUAD
 
@@ -261,23 +262,21 @@ The comparison of the optimizer hyperparamerters that were taken are shown below
 | DistilBERT | 6      | 70              | 62                 |
 | RoBERTa    | 6      | 72              | 74                 |
 
-
-## Optimizers Comparison:
+## Optimizers Comparison
 
 The table lists out the different optimizers and their parameters used in training.
 
 | Optimizer     | Learning Rate $\gamma$ | Momentum $\eta$ | Alpha $\alpha$ | Beta1 $\beta_1$ | Beta2 $\beta_2$ | Epsilon $\epsilon$ |
-| ------------- | ---------------------- | --------------- | -------------- | --------------- | --------------- | ------------------ | 
+| ------------- | ---------------------- | --------------- | -------------- | --------------- | --------------- | ------------------ |
 | AdamW         | 5e-5                   | 0.01            | 0.9            | 0.9             | 0.999           | 1e-5               |
 | RMSprop       | 0.01                   | 0.01            | 0.99           | -               | -               | 1e-5               |
-| NAG           | 5e-5                   |                 | 0.01           | -               | -               | -                  | 
+| NAG           | 5e-5                   |                 | 0.01           | -               | -               | -                  |
 | SGD(Momentum) | 5e-5                   | 0.001           | -              | -               | -               | 1e-5               |
-| SGD           | 0.01                   |                 |                |                 |                 |                    | 
+| SGD           | 0.01                   |                 |                |                 |                 |                    |
 
 **Comparing the Training and Validation loss of all optimizers** for the fine tuned RoBERTa model
 <br>
 <img src = "plots/squad_qa_loss_combined.png" height =350>
-
 
 ## BillSum
 
@@ -290,8 +289,7 @@ The table lists out the different optimizers and their parameters used in traini
 | T5         | 38      | 12       | 22       |
 | DistilBART | 40      | 17       | 25       |
 
-
-## Optimizers Comparison:
+## Optimizers Comparison
 
 The table lists out the different optimizers and their parameters used in training.
 
@@ -303,13 +301,11 @@ The table lists out the different optimizers and their parameters used in traini
 | RMSProp | 2e-5 | 1e-1 | 1-1e-2 | 1e-5 | - |
 | AdamW | 3e-5 | 1e-1 | 1-1e-2 | 1-1e-2 | 1e-5 |
 
-
 **Comparing the Training and Validation loss of all optimizers** for the fine tuned DistilBART model
 
 <img src = "plots/billsum_summarization_loss_combined.png" height =350>
 
 The rate of convergence of the AdamW optimizer is the fastest.
-
 
 ## Multi News
 
@@ -322,33 +318,30 @@ The DistilBART model for text summarization was trained with **Adam optimizer** 
 | BART       | 6      | 38       | 0.84               |
 | DistilBART | 6      | 42       | 0.86               |
 
-
-## Optimizers Comparison:
+## Optimizers Comparison
 
 The table lists out the different optimizers and their parameters used in training.
 | Optimizer     | Learning Rate $\gamma$ | Momentum $\eta$ | Alpha $\alpha$ | Beta1 $\beta_1$ | Beta2 $\beta_2$ | Epsilon $\epsilon$ |
-| ------------- | ---------------------- | --------------- | -------------- | --------------- | --------------- | ------------------ | 
+| ------------- | ---------------------- | --------------- | -------------- | --------------- | --------------- | ------------------ |
 | AdamW         | 5e-5                   | 0.01            | 0.9            | 0.9             | 0.999           | 1e-5               |
 | RMSprop       | 0.01                   | 0.01            | 0.99           | -               | -               | -                  |
-| NAG           | 5e-5                   |                 | -              | -               | -               | -                  | 
+| NAG           | 5e-5                   |                 | -              | -               | -               | -                  |
 | SGD(Momentum) | 5e-5                   | 0.001           | -              | -               | -               | -                  |
-| SGD           | 0.01                   |                 | -              | -               | -               | -                  | 
+| SGD           | 0.01                   |                 | -              | -               | -               | -                  |
 
- 
 **Comparing the Training and Validation loss of all optimizers** for the fine tuned DistilBART model
 <br>
 <img src = "plots/multinews_summarization_loss_combined.png" height = 350>
 
-
-# GPT-3 Training 
+# GPT-3 Training
 
 - To train the GPT-3 model, the Adam optimizer was used with $\beta_1 = 0.9$ and $\beta_2 = 0.95$, and $\epsilon = 10^{-8}$. The global norm of the gradient was clipped at 1.0. A cosine decay for the learning rate down to 10\% of its value, over 260 billion tokens (after 260 billion tokens, training continues at 10\% of the original learning rate) was used. Then a linear learning rate warmup used over the first 375 million tokens.
 
-- Also the batch size is gradually increased from a small value (32k tokens) to the full value over the first 4-12 billion tokens of training. Data was sampled without replacement during training (until an epoch boundary is reached) to minimize overfitting. All models use weight decay of 0.1 to provide a small amount of regularization.
+- The batch size is gradually increased from a small value (32k tokens) to the full value over the first 4-12 billion tokens of training. Data was sampled without replacement during training (until an epoch boundary is reached) to minimize overfitting. All models use weight decay of 0.1 to provide a small amount of regularization.
 
 - During training the model is trained on sequences of the full nctx = 2048 token context window, packing multiple documents into a single sequence when documents are shorter than 2048, in order to increase computational efficiency.
 
-- Mixed precision training is employed to reduce memory usage and speed up training, using both 16-bit and 32-bit floating-point types. Gradient accumulation is used to effectively increase the batch size by accumulating gradients over multiple smaller batches before performing weight updates. 
+- Mixed precision training is employed to reduce memory usage and speed up training, using both 16-bit and 32-bit floating-point types. Gradient accumulation is used to effectively increase the batch size by accumulating gradients over multiple smaller batches before performing weight updates.
 
 - Sequences with multiple documents are not masked in any special way but instead documents within a sequence are delimited with a special end of text token, giving the language model the information necessary to infer that context separated by the end of text token is unrelated. This allows for efficient training without need for any special
 sequence-specific masking.
