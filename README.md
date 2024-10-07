@@ -282,9 +282,9 @@ The table lists out the different optimizers and their parameters used in traini
 
 **Hyperparameter Tuning**
 
-- The DistilBART model was fine tuned on the data. Training the model with an **Adam optimizer** with learning rate of **3e-5**, for **6 epochs** yielded an **EROUGUE-L** of 25.
+- The DistilBART model was fine tuned on the data. Training the model with an **Adam optimizer** with learning rate of **3e-5**, for **6 epochs** yielded an **ROUGE-L** of 25.
 
-| Model      | ROUGE-1 | ROUGUE-2 | ROUGUE-L |
+| Model      | ROUGE-1 | ROUGE-2 | ROUGE-L |
 | ---------- | ------- | -------- | -------- |
 | T5         | 38      | 12       | 22       |
 | DistilBART | 40      | 17       | 25       |
@@ -311,9 +311,9 @@ The rate of convergence of the AdamW optimizer is the fastest.
 
 **Hyperparameter Tuning**
 
-The DistilBART model for text summarization was trained with **Adam optimizer** having learning rate **2e-5** for **6 epochs** yielded a ROUGUE-L score of 42 and F1(weighted) of 0.86.
+The DistilBART model for text summarization was trained with **Adam optimizer** having learning rate **2e-5** for **6 epochs** yielded a ROUGE-L score of 42 and F1(weighted) of 0.86.
 
-| Model      | Epochs | ROUGUE-L | F1 Score(Weighted) |
+| Model      | Epochs | ROUGE-L | F1 Score(Weighted) |
 | ---------- | ------ | -------- | ------------------ |
 | BART       | 6      | 38       | 0.84               |
 | DistilBART | 6      | 42       | 0.86               |
