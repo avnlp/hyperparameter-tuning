@@ -1,6 +1,6 @@
 # Effect of Optimizer Selection and Hyperparameter Tuning on Training Efficiency and LLM Performance
 
-**Paper:** [Optimizer Inclusions](paper/optimizer_inclusions.pdf)
+**Paper:** [Effect of Optimizer Selection and Hyperparameter Tuning on Training Efficiency and LLM Performance](paper/optimizer_inclusions.pdf)
 
 - The choice of optimization algorithm for training Large Language Models (LLMs) significantly impacts both training speed and final predictive performance. We demonstrate the critical importance of hyperparameter tuning protocols in optimizer comparisons for LLMs. Our work reveals that inclusion relationships between optimizers play a crucial role in practice and consistently predict optimizer performance.
 
